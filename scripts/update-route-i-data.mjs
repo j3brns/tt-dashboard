@@ -91,17 +91,36 @@ function formatElapsed(minutes) {
 async function ensureImages(forceRefresh) {
   if (!fs.existsSync(IMAGES_DIR)) fs.mkdirSync(IMAGES_DIR, { recursive: true });
   
+  const extensions = ['.webp', '.png', '.jpg', '.jpeg'];
+  
   for (const cp of CHECKPOINTS) {
     const slug = cp.toLowerCase().replace(/\s+/g, '-');
-    const imagePath = path.join(IMAGES_DIR, `${slug}.svg`);
     
-    if (forceRefresh || !fs.existsSync(imagePath)) {
-      // Generate a simple SVG placeholder instead of complex network lookups
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
-        <rect width="100%" height="100%" fill="#2a3f2a" />
-        <text x="50%" y="50%" font-family="sans-serif" font-size="24" fill="white" text-anchor="middle" dominant-baseline="middle">${cp}</text>
+    // Check if a real photo already exists
+    let photoFound = null;
+    for (const ext of extensions) {
+      if (fs.existsSync(path.join(IMAGES_DIR, `${slug}${ext}`))) {
+        photoFound = `./images/${slug}${ext}`;
+        break;
+      }
+    }
+
+    const svgPath = path.join(IMAGES_DIR, `${slug}.svg`);
+    
+    // If no real photo and (force or no SVG), generate tactical SVG
+    if (!photoFound && (forceRefresh || !fs.existsSync(svgPath))) {
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300">
+        <rect width="100%" height="100%" fill="#1a1e17" />
+        <path d="M0 0 L20 0 M0 0 L0 20" stroke="#78866b" stroke-width="2" />
+        <path d="M380 0 L400 0 M400 0 L400 20" stroke="#78866b" stroke-width="2" />
+        <path d="M0 280 L0 300 M0 300 L20 300" stroke="#78866b" stroke-width="2" />
+        <path d="M380 300 L400 300 M400 300 L400 280" stroke="#78866b" stroke-width="2" />
+        <text x="50%" y="45%" font-family="monospace" font-size="18" fill="#fbbf24" text-anchor="middle" font-weight="bold">${cp}</text>
+        <text x="50%" y="58%" font-family="monospace" font-size="10" fill="#78866b" text-anchor="middle">COORD_DATA: ACQUIRING...</text>
+        <circle cx="200" cy="200" r="40" fill="none" stroke="#78866b" stroke-width="1" opacity="0.2" />
+        <path d="M160 200 L240 200 M200 160 L200 240" stroke="#78866b" stroke-width="1" opacity="0.2" />
       </svg>`;
-      fs.writeFileSync(imagePath, svg);
+      fs.writeFileSync(svgPath, svg);
     }
   }
 }
@@ -193,6 +212,16 @@ async function updateData() {
 
     const progressPercent = Math.round(((i + (reached ? 1 : 0)) / CHECKPOINTS.length) * 100);
     const slug = cpName.toLowerCase().replace(/\s+/g, '-');
+    
+    // Prioritize photo over SVG
+    let localImageUrl = `./images/${slug}.svg`;
+    const extensions = ['.webp', '.png', '.jpg', '.jpeg'];
+    for (const ext of extensions) {
+      if (fs.existsSync(path.join(IMAGES_DIR, `${slug}${ext}`))) {
+        localImageUrl = `./images/${slug}${ext}`;
+        break;
+      }
+    }
 
     checkpointsData.push({
       name: cpName,
@@ -201,7 +230,7 @@ async function updateData() {
       elapsed,
       progressPercent,
       coordinates: CHECKPOINT_COORDS[cpName] || null,
-      localImageUrl: `./images/${slug}.svg`,
+      localImageUrl,
       imageSource: "placeholder",
       imageTitle: cpName
     });
