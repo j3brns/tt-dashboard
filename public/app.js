@@ -121,13 +121,18 @@ function renderDashboard(data) {
     grid.innerHTML = '';
     data.checkpoints.forEach(cp => {
         const card = document.createElement('div');
-        card.className = `cp-card ${cp.reached ? 'reached' : 'unreached'}`;
+        const isSatellite = !cp.localImageUrl.includes('cosdon') && !cp.localImageUrl.includes('postbridge');
+        card.className = `cp-card ${cp.reached ? 'reached' : 'unreached'} ${isSatellite ? 'sat-view' : ''}`;
         card.innerHTML = `
-            <img src="${cp.localImageUrl}" alt="${cp.name}" class="cp-card-img" onerror="this.src='https://via.placeholder.com/300x150?text=${cp.name}'">
+            <div class="card-img-wrapper">
+                <img src="${cp.localImageUrl}" alt="${cp.name}" class="cp-card-img" onerror="this.src='https://via.placeholder.com/300x150?text=${cp.name}'">
+                ${isSatellite ? '<div class="sat-overlay">ZOOM_LVL: 18 // SAT_LINK</div>' : ''}
+            </div>
             <div class="cp-card-content">
                 <h3 class="mono">${cp.name}</h3>
                 <p class="mono">${cp.arrivalTime ? 'ACQ: ' + cp.arrivalTime : 'STATUS: PENDING'}</p>
                 ${cp.elapsed ? `<p class="mono">ELAPSED: ${cp.elapsed.label}</p>` : ''}
+                <p class="mono meta">COORD: ${cp.coordinates ? cp.coordinates.lat.toFixed(4) + ',' + cp.coordinates.lon.toFixed(4) : 'UNKNOWN'}</p>
             </div>
         `;
         grid.appendChild(card);
