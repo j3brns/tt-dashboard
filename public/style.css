@@ -268,8 +268,8 @@ code, .mono {
 
 .route-path {
     stroke: var(--accent);
-    stroke-width: 1.5;
-    filter: drop-shadow(0 0 5px var(--accent));
+    stroke-width: 3;
+    filter: drop-shadow(0 0 8px var(--accent));
 }
 
 .checkpoint-dot {
@@ -290,6 +290,16 @@ code, .mono {
     stroke: var(--accent);
     r: 5;
     filter: drop-shadow(0 0 10px #fff);
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(1); opacity: 1; stroke-width: 2; }
+    50% { transform: scale(1.5); opacity: 0.7; stroke-width: 5; }
+    100% { transform: scale(1); opacity: 1; stroke-width: 2; }
+}
+
+.current-cp-marker {
+    animation: pulse-green 1.5s infinite;
 }
 
 /* Highlights Grid */

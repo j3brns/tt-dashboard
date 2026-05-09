@@ -34,8 +34,9 @@ function updateMap(checkpoints, currentCp) {
     if (latlngs.length > 0) {
         routeLine = L.polyline(latlngs, {
             color: getComputedStyle(document.documentElement).getPropertyValue('--accent').trim(),
-            weight: 3,
-            opacity: 0.8
+            weight: 6,
+            opacity: 0.9,
+            dashArray: '1, 10'
         }).addTo(map);
 
         checkpoints.forEach(cp => {
@@ -44,12 +45,13 @@ function updateMap(checkpoints, currentCp) {
             const isReached = cp.reached;
             
             const marker = L.circleMarker([cp.coordinates.lat, cp.coordinates.lon], {
-                radius: isCurrent ? 8 : 4,
-                fillColor: isCurrent ? '#fff' : (isReached ? '#fbbf24' : '#000'),
-                color: '#78866b',
-                weight: 1,
+                radius: isCurrent ? 10 : 4,
+                fillColor: isCurrent ? '#4ade80' : (isReached ? '#fbbf24' : '#000'),
+                color: isCurrent ? '#4ade80' : '#78866b',
+                weight: isCurrent ? 2 : 1,
                 opacity: 1,
-                fillOpacity: 1
+                fillOpacity: 1,
+                className: isCurrent ? 'current-cp-marker' : ''
             }).addTo(map).bindPopup(cp.name);
             
             markers.push(marker);
