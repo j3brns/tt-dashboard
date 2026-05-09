@@ -217,7 +217,8 @@ async function updateData() {
     let localImageUrl = `./images/${slug}.svg`;
     const extensions = ['.webp', '.png', '.jpg', '.jpeg'];
     for (const ext of extensions) {
-      if (fs.existsSync(path.join(IMAGES_DIR, `${slug}${ext}`))) {
+      const fullPath = path.join(IMAGES_DIR, `${slug}${ext}`);
+      if (fs.existsSync(fullPath)) {
         localImageUrl = `./images/${slug}${ext}`;
         break;
       }
@@ -328,21 +329,6 @@ async function updateData() {
   if (data.nextCheckpoint) {
     data.nextCheckpoint.eta = nextCpETA;
     data.nextCheckpoint.pace = teamPace;
-  }
-
-  // Keep existing image metadata if file exists and not forcing
-  if (fs.existsSync(OUTPUT_FILE)) {
-    try {
-      const oldData = JSON.parse(fs.readFileSync(OUTPUT_FILE, 'utf8'));
-      if (!forceImageRefresh && oldData.checkpoints) {
-        data.checkpoints.forEach(cp => {
-          const oldCp = oldData.checkpoints.find(c => c.name === cp.name);
-          if (oldCp && oldCp.localImageUrl) {
-            cp.localImageUrl = oldCp.localImageUrl;
-          }
-        });
-      }
-    } catch(e) {}
   }
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(data, null, 2));
