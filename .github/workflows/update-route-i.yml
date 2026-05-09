@@ -1,0 +1,56 @@
+name: Update Route I Data
+
+on:
+  schedule:
+    - cron: '*/5 * * * *' # Every 5 minutes
+  workflow_dispatch:
+    inputs:
+      force_images:
+        description: 'Force refresh checkpoint images'
+        required: false
+        type: boolean
+        default: false
+      ignore_window:
+        description: 'Ignore event window check'
+        required: false
+        type: boolean
+        default: true
+  repository_dispatch:
+    types: [ten-tors-route-i-update]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run update script
+        run: |
+          FLAGS=""
+          if [[ "${{ github.event.inputs.force_images }}" == "true" ]]; then FLAGS="$FLAGS --force-images"; fi
+          if [[ "${{ github.event.inputs.ignore_window }}" == "true" || "${{ github.event_name }}" == "repository_dispatch" || "${{ github.event_name }}" == "workflow_dispatch" ]]; then FLAGS="$FLAGS --ignore-window"; fi
+          node scripts/update-route-i-data.mjs $FLAGS
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add public/data.json public/images/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update Route I data [skip ci]"
+            git push
+          fi

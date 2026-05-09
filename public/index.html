@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="data:,">
+    <title>Ten Tors Route I - Polar Explorer Scouts (IF)</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">TEAM IF</div>
+            <h1>Polar Explorer Scouts</h1>
+            <p class="subtitle">Ten Tors Route I Live Dashboard</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Summary Tiles -->
+        <section class="summary-grid">
+            <div class="tile">
+                <span class="tile-label">Route Progress</span>
+                <span class="tile-value" id="progress-val">--%</span>
+                <div class="progress-bar-container">
+                    <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="tile">
+                <span class="tile-label">Reached</span>
+                <span class="tile-value" id="reached-count">-- / --</span>
+            </div>
+            <div class="tile">
+                <span class="tile-label">Last Source Update</span>
+                <span class="tile-value" id="source-update">--:--</span>
+            </div>
+            <div class="tile">
+                <span class="tile-label">Status</span>
+                <span class="tile-value" id="team-status">Tracking...</span>
+            </div>
+        </section>
+
+        <!-- Route Map -->
+        <section class="card map-card">
+            <h2>Route Map</h2>
+            <div id="map-container" class="map-wrapper">
+                <svg id="route-map" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+                    <!-- Map background/path will be injected here -->
+                </svg>
+            </div>
+        </section>
+
+        <!-- Current & Next Checkpoint -->
+        <section class="checkpoint-highlights">
+            <div class="card current-cp-card highlight">
+                <div class="card-header">
+                    <span class="badge current">CURRENT</span>
+                    <h2 id="current-cp-name">--</h2>
+                </div>
+                <div class="card-body">
+                    <div class="cp-info">
+                        <span class="info-label">Arrived</span>
+                        <span class="info-value" id="current-cp-time">--:--</span>
+                    </div>
+                    <div class="cp-info">
+                        <span class="info-label">Elapsed</span>
+                        <span class="info-value" id="current-cp-elapsed">--</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card next-cp-card">
+                <div class="card-header">
+                    <span class="badge next">NEXT</span>
+                    <h2 id="next-cp-name">--</h2>
+                </div>
+                <div class="card-body">
+                    <p>Estimated progress: <span id="next-cp-progress">--%</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Progress Timeline -->
+        <section class="card timeline-card">
+            <h2>Progress Timeline</h2>
+            <div class="timeline" id="timeline">
+                <!-- Timeline items injected here -->
+            </div>
+        </section>
+
+        <!-- Checkpoint Cards -->
+        <section class="checkpoint-grid" id="checkpoint-grid">
+            <!-- Individual checkpoint cards injected here -->
+        </section>
+    </main>
+
+    <footer>
+        <p>Data source: <a href="https://www.tentors.org.uk/eventdata/routei.html" id="source-link" target="_blank">Ten Tors Official</a></p>
+        <p>Last dashboard refresh: <span id="last-refresh">--:--:--</span></p>
+        <div id="error-toast" class="toast hidden">Update failed. Showing last good data.</div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
