@@ -15,6 +15,18 @@
     --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
+body.sunlight-mode {
+    --bg: #f3f4f6;
+    --surface: #ffffff;
+    --surface-light: #e5e7eb;
+    --primary: #1e3d1a;
+    --accent: #d97706; /* Darker amber for contrast */
+    --text-dim: #4b5563;
+    --text-bright: #111827;
+    --border: rgba(30, 61, 26, 0.2);
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -30,6 +42,7 @@ body {
         linear-gradient(rgba(120, 134, 107, 0.03) 1px, transparent 1px),
         linear-gradient(90deg, rgba(120, 134, 107, 0.03) 1px, transparent 1px);
     background-size: 30px 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 code, .mono {
@@ -47,11 +60,37 @@ code, .mono {
     position: relative;
     padding: 100px 20px 140px;
     background-color: #000;
+    background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/jjmb.png');
     background-size: cover;
     background-position: center;
     text-align: center;
     border-bottom: 2px solid var(--primary);
     margin-bottom: 0;
+}
+
+.tactical-btn {
+    background: var(--surface-light);
+    color: var(--accent);
+    border: 1px solid var(--primary);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+}
+
+.tactical-btn:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+.map-controls {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
 }
 
 .hero::after {

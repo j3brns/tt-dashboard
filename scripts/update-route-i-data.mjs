@@ -38,6 +38,27 @@ const CHECKPOINT_COORDS = {
   "FINISH": { lat: 50.738, lon: -4.008 }
 };
 
+// Approximate distances in km between sequential checkpoints
+const SEGMENT_DISTANCES = {
+  "START-HIGHER TOR": 2.8,
+  "HIGHER TOR-COSDON HILL": 4.5,
+  "COSDON HILL-SHILSTONE TOR": 3.2,
+  "SHILSTONE TOR-STEEPERTON TOR": 5.8,
+  "STEEPERTON TOR-WATERN TOR": 2.1,
+  "WATERN TOR-SITTAFORD TOR": 2.0,
+  "SITTAFORD TOR-STANNON TOR": 2.5,
+  "STANNON TOR-POSTBRIDGE": 4.2,
+  "POSTBRIDGE-HIGHER WHITE TOR": 4.8,
+  "HIGHER WHITE TOR-HOLMING BEAM": 2.2,
+  "HOLMING BEAM-WHITE BARROW": 3.8,
+  "WHITE BARROW-STANDON FARM": 3.5,
+  "STANDON FARM-WILLSWORTHY": 2.9,
+  "WILLSWORTHY-HARE TOR": 2.1,
+  "HARE TOR-KITTY TOR": 3.2,
+  "KITTY TOR-EAST MILL TOR": 4.5,
+  "EAST MILL TOR-FINISH": 4.0
+};
+
 async function fetchRouteData() {
   const res = await fetch(ROUTE_URL);
   if (!res.ok) throw new Error(`Failed to fetch ${ROUTE_URL}: ${res.status}`);
@@ -186,6 +207,49 @@ async function updateData() {
     });
   }
 
+  // Calculate Pace and ETA
+  let teamPace = null; // min/km
+  let nextCpETA = null;
+
+  // Find the last completed segment
+  let lastReachedIdx = -1;
+  for (let i = checkpointsData.length - 1; i >= 0; i--) {
+    if (checkpointsData[i].reached && checkpointsData[i].arrivalTime) {
+      lastReachedIdx = i;
+      break;
+    }
+  }
+
+  if (lastReachedIdx > 0) {
+    const lastCp = checkpointsData[lastReachedIdx];
+    const prevCp = checkpointsData[lastReachedIdx - 1];
+    
+    if (prevCp.reached && prevCp.arrivalTime) {
+      const segmentKey = `${prevCp.name}-${lastCp.name}`;
+      const dist = SEGMENT_DISTANCES[segmentKey];
+      const timeDiff = calculateElapsedMinutes(prevCp.arrivalTime, lastCp.arrivalTime);
+      
+      if (dist && timeDiff) {
+        teamPace = Math.round((timeDiff / dist) * 10) / 10;
+        
+        // Predict ETA for next CP
+        if (lastReachedIdx < checkpointsData.length - 1) {
+            const nextCp = checkpointsData[lastReachedIdx + 1];
+            const nextSegmentKey = `${lastCp.name}-${nextCp.name}`;
+            const nextDist = SEGMENT_DISTANCES[nextSegmentKey];
+            if (nextDist) {
+                const estMinutes = nextDist * teamPace;
+                const [h, m] = lastCp.arrivalTime.split(':').map(Number);
+                let totalMin = h * 60 + m + estMinutes;
+                const etaH = Math.floor((totalMin / 60) % 24);
+                const etaM = Math.floor(totalMin % 60);
+                nextCpETA = `${String(etaH).padStart(2, '0')}:${String(etaM).padStart(2, '0')}`;
+            }
+        }
+      }
+    }
+  }
+
   const routeProgressPercent = Math.round((reachedCount / CHECKPOINTS.length) * 100);
 
   const data = {
@@ -206,6 +270,11 @@ async function updateData() {
     checkpoints: checkpointsData
   };
 
+  if (data.nextCheckpoint) {
+    data.nextCheckpoint.eta = nextCpETA;
+    data.nextCheckpoint.pace = teamPace;
+  }
+
   // Keep existing image metadata if file exists and not forcing
   if (fs.existsSync(OUTPUT_FILE)) {
     try {
@@ -222,6 +291,26 @@ async function updateData() {
   }
 
   fs.writeFileSync(OUTPUT_FILE, JSON.stringify(data, null, 2));
+  
+  // Update history log
+  const HISTORY_FILE = path.join(process.cwd(), 'public', 'history.json');
+  let history = [];
+  if (fs.existsSync(HISTORY_FILE)) {
+    try { history = JSON.parse(fs.readFileSync(HISTORY_FILE, 'utf8')); } catch(e) {}
+  }
+  // Only add if data is new/different from last entry
+  const lastEntry = history[history.length - 1];
+  if (!lastEntry || lastEntry.sourceLastUpdated !== data.sourceLastUpdated) {
+    history.push({
+        timestamp: data.generatedAt,
+        sourceLastUpdated: data.sourceLastUpdated,
+        reachedCount: data.reachedCount,
+        currentCheckpoint: data.currentCheckpoint ? data.currentCheckpoint.name : null,
+        pace: data.nextCheckpoint ? data.nextCheckpoint.pace : null
+    });
+    fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2));
+  }
+
   console.log(`Successfully updated ${OUTPUT_FILE}`);
 }
 

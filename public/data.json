@@ -1,7 +1,7 @@
 {
   "sourceUrl": "https://www.tentors.org.uk/eventdata/routei.html",
-  "generatedAt": "2026-05-09T21:30:32.699Z",
-  "sourceLastUpdated": "21:30",
+  "generatedAt": "2026-05-09T21:33:24.086Z",
+  "sourceLastUpdated": "21:33",
   "route": "I",
   "team": {
     "requestedName": "Polar Explorer Scouts",
@@ -40,7 +40,9 @@
     },
     "localImageUrl": "./images/higher-tor.svg",
     "imageSource": "placeholder",
-    "imageTitle": "HIGHER TOR"
+    "imageTitle": "HIGHER TOR",
+    "eta": "18:51",
+    "pace": 15.5
   },
   "checkpoints": [
     {
@@ -69,7 +71,9 @@
       },
       "localImageUrl": "./images/higher-tor.svg",
       "imageSource": "placeholder",
-      "imageTitle": "HIGHER TOR"
+      "imageTitle": "HIGHER TOR",
+      "eta": "18:51",
+      "pace": 15.5
     },
     {
       "name": "COSDON HILL",

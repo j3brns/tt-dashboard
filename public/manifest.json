@@ -1,0 +1,21 @@
+{
+  "name": "Ten Tors Route I Mission Control",
+  "short_name": "TT Mission Control",
+  "description": "Tactical HUD for tracking Polar Explorer Scouts on Ten Tors Route I.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#0d0f0c",
+  "theme_color": "#78866b",
+  "icons": [
+    {
+      "src": "images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
