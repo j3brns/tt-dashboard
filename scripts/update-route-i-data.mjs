@@ -207,30 +207,51 @@ async function updateData() {
     });
   }
 
-  // Calculate Pace and ETA
+  // Calculate Pace, ETA and Distance-based Progress
   let teamPace = null; // min/km
   let nextCpETA = null;
+  let distCovered = 0;
+  const segmentKeys = Object.keys(SEGMENT_DISTANCES);
+  const totalDist = Object.values(SEGMENT_DISTANCES).reduce((a, b) => a + b, 0);
 
-  // Find the last completed segment
+  // Find the last completed checkpoint by index
   let lastReachedIdx = -1;
   for (let i = checkpointsData.length - 1; i >= 0; i--) {
-    if (checkpointsData[i].reached && checkpointsData[i].arrivalTime) {
+    if (checkpointsData[i].reached) {
       lastReachedIdx = i;
       break;
     }
   }
 
+  // Calculate distance covered based on last reached index
+  for (let i = 0; i < lastReachedIdx; i++) {
+    const key = `${CHECKPOINTS[i]}-${CHECKPOINTS[i+1]}`;
+    if (SEGMENT_DISTANCES[key]) distCovered += SEGMENT_DISTANCES[key];
+  }
+
   if (lastReachedIdx > 0) {
     const lastCp = checkpointsData[lastReachedIdx];
-    const prevCp = checkpointsData[lastReachedIdx - 1];
+    // Find the previous reached CP with a time to calculate pace
+    let prevReachedWithTime = null;
+    for (let i = lastReachedIdx - 1; i >= 0; i--) {
+        if (checkpointsData[i].reached && checkpointsData[i].arrivalTime) {
+            prevReachedWithTime = checkpointsData[i];
+            break;
+        }
+    }
     
-    if (prevCp.reached && prevCp.arrivalTime) {
-      const segmentKey = `${prevCp.name}-${lastCp.name}`;
-      const dist = SEGMENT_DISTANCES[segmentKey];
-      const timeDiff = calculateElapsedMinutes(prevCp.arrivalTime, lastCp.arrivalTime);
+    if (prevReachedWithTime && lastCp.arrivalTime) {
+      // Calculate distance between these two specific points
+      let segmentDist = 0;
+      for (let i = checkpointsData.indexOf(prevReachedWithTime); i < lastReachedIdx; i++) {
+          const key = `${CHECKPOINTS[i]}-${CHECKPOINTS[i+1]}`;
+          segmentDist += (SEGMENT_DISTANCES[key] || 0);
+      }
+
+      const timeDiff = calculateElapsedMinutes(prevReachedWithTime.arrivalTime, lastCp.arrivalTime);
       
-      if (dist && timeDiff) {
-        teamPace = Math.round((timeDiff / dist) * 10) / 10;
+      if (segmentDist > 0 && timeDiff > 0) {
+        teamPace = Math.round((timeDiff / segmentDist) * 10) / 10;
         
         // Predict ETA for next CP
         if (lastReachedIdx < checkpointsData.length - 1) {
@@ -250,7 +271,8 @@ async function updateData() {
     }
   }
 
-  const routeProgressPercent = Math.round((reachedCount / CHECKPOINTS.length) * 100);
+  const routeProgressPercent = Math.round((distCovered / totalDist) * 100);
+  reachedCount = lastReachedIdx + 1;
 
   const data = {
     sourceUrl: ROUTE_URL,
@@ -261,10 +283,14 @@ async function updateData() {
       requestedName: TEAM_NAME,
       sourceName: $(targetRow[0]).text().trim(),
       code: TEAM_CODE,
-      nameMatchesRequest: $(targetRow[0]).text().trim().includes(TEAM_NAME.split(' ')[0])
+      nameMatchesRequest: $(targetRow[0]).text().trim().includes(TEAM_NAME.split(' ')[0]),
+      avatarUrl: "./images/jjmb.png"
     },
     routeProgressPercent,
     reachedCount,
+    totalCheckpoints: CHECKPOINTS.length,
+    distanceCovered: Math.round(distCovered * 10) / 10,
+    totalDistance: Math.round(totalDist * 10) / 10,
     currentCheckpoint: checkpointsData.find(c => c.name === currentCheckpoint) || null,
     nextCheckpoint: checkpointsData.find(c => c.name === nextCheckpoint) || null,
     checkpoints: checkpointsData

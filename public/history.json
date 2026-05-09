@@ -5,5 +5,12 @@
     "reachedCount": 8,
     "currentCheckpoint": "WHITE BARROW",
     "pace": 15.5
+  },
+  {
+    "timestamp": "2026-05-09T21:38:04.319Z",
+    "sourceLastUpdated": "21:38",
+    "reachedCount": 12,
+    "currentCheckpoint": "WHITE BARROW",
+    "pace": 15.5
   }
 ]

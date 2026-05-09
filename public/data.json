@@ -1,16 +1,20 @@
 {
   "sourceUrl": "https://www.tentors.org.uk/eventdata/routei.html",
-  "generatedAt": "2026-05-09T21:33:24.086Z",
-  "sourceLastUpdated": "21:33",
+  "generatedAt": "2026-05-09T21:38:04.319Z",
+  "sourceLastUpdated": "21:38",
   "route": "I",
   "team": {
     "requestedName": "Polar Explorer Scouts",
     "sourceName": "Polar Explorer Scouts",
     "code": "IF",
-    "nameMatchesRequest": true
+    "nameMatchesRequest": true,
+    "avatarUrl": "./images/jjmb.png"
   },
-  "routeProgressPercent": 44,
-  "reachedCount": 8,
+  "routeProgressPercent": 65,
+  "reachedCount": 12,
+  "totalCheckpoints": 18,
+  "distanceCovered": 37.9,
+  "totalDistance": 58.1,
   "currentCheckpoint": {
     "name": "WHITE BARROW",
     "arrivalTime": "17:57",
