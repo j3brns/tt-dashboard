@@ -1,7 +1,7 @@
 {
   "sourceUrl": "https://www.tentors.org.uk/eventdata/routei.html",
-  "generatedAt": "2026-05-09T23:01:44.639Z",
-  "sourceLastUpdated": "23:01",
+  "generatedAt": "2026-05-09T23:59:57.028Z",
+  "sourceLastUpdated": "23:59",
   "route": "I",
   "team": {
     "requestedName": "Polar Explorer Scouts",
@@ -28,7 +28,7 @@
       "lat": 50.5757,
       "lon": -4.0459
     },
-    "localImageUrl": "./images/white-barrow.svg",
+    "localImageUrl": "./images/white-barrow.jpg",
     "imageSource": "placeholder",
     "imageTitle": "WHITE BARROW"
   },
@@ -42,7 +42,7 @@
       "lat": 50.716,
       "lon": -3.987
     },
-    "localImageUrl": "./images/higher-tor.svg",
+    "localImageUrl": "./images/higher-tor.jpg",
     "imageSource": "placeholder",
     "imageTitle": "HIGHER TOR",
     "eta": "18:51",
@@ -59,7 +59,7 @@
         "lat": 50.738,
         "lon": -4.008
       },
-      "localImageUrl": "./images/start.svg",
+      "localImageUrl": "./images/start.jpg",
       "imageSource": "placeholder",
       "imageTitle": "START"
     },
@@ -73,7 +73,7 @@
         "lat": 50.716,
         "lon": -3.987
       },
-      "localImageUrl": "./images/higher-tor.svg",
+      "localImageUrl": "./images/higher-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HIGHER TOR",
       "eta": "18:51",
@@ -92,7 +92,7 @@
         "lat": 50.711,
         "lon": -3.921
       },
-      "localImageUrl": "./images/cosdon-hill.svg",
+      "localImageUrl": "./images/cosdon-hill.jpg",
       "imageSource": "placeholder",
       "imageTitle": "COSDON HILL"
     },
@@ -106,7 +106,7 @@
         "lat": 50.686,
         "lon": -3.896
       },
-      "localImageUrl": "./images/shilstone-tor.svg",
+      "localImageUrl": "./images/shilstone-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "SHILSTONE TOR"
     },
@@ -123,7 +123,7 @@
         "lat": 50.672,
         "lon": -3.974
       },
-      "localImageUrl": "./images/steeperton-tor.svg",
+      "localImageUrl": "./images/steeperton-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "STEEPERTON TOR"
     },
@@ -140,7 +140,7 @@
         "lat": 50.655,
         "lon": -3.957
       },
-      "localImageUrl": "./images/watern-tor.svg",
+      "localImageUrl": "./images/watern-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "WATERN TOR"
     },
@@ -157,7 +157,7 @@
         "lat": 50.638,
         "lon": -3.963
       },
-      "localImageUrl": "./images/sittaford-tor.svg",
+      "localImageUrl": "./images/sittaford-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "SITTAFORD TOR"
     },
@@ -171,7 +171,7 @@
         "lat": 50.63,
         "lon": -3.929
       },
-      "localImageUrl": "./images/stannon-tor.svg",
+      "localImageUrl": "./images/stannon-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "STANNON TOR"
     },
@@ -188,7 +188,7 @@
         "lat": 50.595,
         "lon": -3.906
       },
-      "localImageUrl": "./images/postbridge.svg",
+      "localImageUrl": "./images/postbridge.jpg",
       "imageSource": "placeholder",
       "imageTitle": "POSTBRIDGE"
     },
@@ -202,7 +202,7 @@
         "lat": 50.589,
         "lon": -3.974
       },
-      "localImageUrl": "./images/higher-white-tor.svg",
+      "localImageUrl": "./images/higher-white-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HIGHER WHITE TOR"
     },
@@ -219,7 +219,7 @@
         "lat": 50.573,
         "lon": -3.993
       },
-      "localImageUrl": "./images/holming-beam.svg",
+      "localImageUrl": "./images/holming-beam.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HOLMING BEAM"
     },
@@ -236,7 +236,7 @@
         "lat": 50.5757,
         "lon": -4.0459
       },
-      "localImageUrl": "./images/white-barrow.svg",
+      "localImageUrl": "./images/white-barrow.jpg",
       "imageSource": "placeholder",
       "imageTitle": "WHITE BARROW"
     },
@@ -250,7 +250,7 @@
         "lat": 50.605,
         "lon": -4.053
       },
-      "localImageUrl": "./images/standon-farm.svg",
+      "localImageUrl": "./images/standon-farm.jpg",
       "imageSource": "placeholder",
       "imageTitle": "STANDON FARM"
     },
@@ -264,7 +264,7 @@
         "lat": 50.628,
         "lon": -4.072
       },
-      "localImageUrl": "./images/willsworthy.svg",
+      "localImageUrl": "./images/willsworthy.jpg",
       "imageSource": "placeholder",
       "imageTitle": "WILLSWORTHY"
     },
@@ -278,7 +278,7 @@
         "lat": 50.643,
         "lon": -4.053
       },
-      "localImageUrl": "./images/hare-tor.svg",
+      "localImageUrl": "./images/hare-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HARE TOR"
     },
@@ -292,7 +292,7 @@
         "lat": 50.671,
         "lon": -4.043
       },
-      "localImageUrl": "./images/kitty-tor.svg",
+      "localImageUrl": "./images/kitty-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "KITTY TOR"
     },
@@ -306,7 +306,7 @@
         "lat": 50.704,
         "lon": -4.004
       },
-      "localImageUrl": "./images/east-mill-tor.svg",
+      "localImageUrl": "./images/east-mill-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "EAST MILL TOR"
     },
@@ -320,7 +320,7 @@
         "lat": 50.738,
         "lon": -4.008
       },
-      "localImageUrl": "./images/finish.svg",
+      "localImageUrl": "./images/finish.jpg",
       "imageSource": "placeholder",
       "imageTitle": "FINISH"
     }
