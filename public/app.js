@@ -68,9 +68,9 @@ function renderDashboard(data) {
         card.innerHTML = `
             <img src="${cp.localImageUrl}" alt="${cp.name}" class="cp-card-img" onerror="this.src='https://via.placeholder.com/300x150?text=${cp.name}'">
             <div class="cp-card-content">
-                <h3>${cp.name}</h3>
-                <p>${cp.arrivalTime ? 'Arrived: ' + cp.arrivalTime : 'Not yet reached'}</p>
-                ${cp.elapsed ? `<p>Elapsed: ${cp.elapsed.label}</p>` : ''}
+                <h3 class="mono">${cp.name}</h3>
+                <p class="mono">${cp.arrivalTime ? 'ACQ: ' + cp.arrivalTime : 'STATUS: PENDING'}</p>
+                ${cp.elapsed ? `<p class="mono">ELAPSED: ${cp.elapsed.label}</p>` : ''}
             </div>
         `;
         grid.appendChild(card);
@@ -115,7 +115,7 @@ function renderMap(checkpoints, currentCp) {
             const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
             dot.setAttribute('cx', x);
             dot.setAttribute('cy', y);
-            dot.setAttribute('r', '2');
+            dot.setAttribute('r', cp.name === (currentCp ? currentCp.name : '') ? '4' : '2');
             let className = 'checkpoint-dot';
             if (cp.reached) className += ' reached';
             if (currentCp && cp.name === currentCp.name) className += ' current';

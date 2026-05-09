@@ -17,9 +17,9 @@
 <body>
     <header class="hero">
         <div class="hero-content">
-            <div class="hero-badge">TEAM IF</div>
-            <h1>Polar Explorer Scouts</h1>
-            <p class="subtitle">Ten Tors Route I Live Dashboard</p>
+            <div class="hero-badge">TRACKING: TEAM IF</div>
+            <h1>POLAR EXPLORER SCOUTS</h1>
+            <p class="subtitle">ROUTE I // MISSION CONTROL</p>
         </div>
     </header>
 
@@ -27,29 +27,29 @@
         <!-- Summary Tiles -->
         <section class="summary-grid">
             <div class="tile">
-                <span class="tile-label">Route Progress</span>
-                <span class="tile-value" id="progress-val">--%</span>
+                <span class="tile-label">Mission Progress</span>
+                <span class="tile-value mono" id="progress-val">--%</span>
                 <div class="progress-bar-container">
                     <div class="progress-bar" id="progress-bar" style="width: 0%"></div>
                 </div>
             </div>
             <div class="tile">
-                <span class="tile-label">Reached</span>
-                <span class="tile-value" id="reached-count">-- / --</span>
+                <span class="tile-label">CP RECOVERED</span>
+                <span class="tile-value mono" id="reached-count">-- / --</span>
             </div>
             <div class="tile">
-                <span class="tile-label">Last Source Update</span>
-                <span class="tile-value" id="source-update">--:--</span>
+                <span class="tile-label">SIG_INT UPDATED</span>
+                <span class="tile-value mono" id="source-update">--:--</span>
             </div>
             <div class="tile">
-                <span class="tile-label">Status</span>
-                <span class="tile-value" id="team-status">Tracking...</span>
+                <span class="tile-label">OPERATIONAL STATUS</span>
+                <span class="tile-value mono" id="team-status">ACTIVE</span>
             </div>
         </section>
 
         <!-- Route Map -->
         <section class="card map-card">
-            <h2>Route Map</h2>
+            <h2>TACTICAL ROUTE MAP</h2>
             <div id="map-container" class="map-wrapper">
                 <svg id="route-map" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
                     <!-- Map background/path will be injected here -->
@@ -59,37 +59,42 @@
 
         <!-- Current & Next Checkpoint -->
         <section class="checkpoint-highlights">
-            <div class="card current-cp-card highlight">
+            <div class="card current-cp-card">
                 <div class="card-header">
-                    <span class="badge current">CURRENT</span>
+                    <span class="badge current">LATEST ACQUISITION</span>
                     <h2 id="current-cp-name">--</h2>
                 </div>
                 <div class="card-body">
                     <div class="cp-info">
-                        <span class="info-label">Arrived</span>
-                        <span class="info-value" id="current-cp-time">--:--</span>
+                        <span class="info-label">TIME</span>
+                        <span class="info-value mono" id="current-cp-time">--:--</span>
                     </div>
                     <div class="cp-info">
-                        <span class="info-label">Elapsed</span>
-                        <span class="info-value" id="current-cp-elapsed">--</span>
+                        <span class="info-label">ELAPSED</span>
+                        <span class="info-value mono" id="current-cp-elapsed">--</span>
                     </div>
                 </div>
             </div>
 
             <div class="card next-cp-card">
                 <div class="card-header">
-                    <span class="badge next">NEXT</span>
+                    <span class="badge next">NEXT TARGET</span>
                     <h2 id="next-cp-name">--</h2>
                 </div>
                 <div class="card-body">
-                    <p>Estimated progress: <span id="next-cp-progress">--%</span></p>
+                    <div class="cp-info">
+                        <span class="info-label">EST. PROGRESS</span>
+                        <span class="info-value mono" id="next-cp-progress">--%</span>
+                    </div>
                 </div>
             </div>
         </section>
 
         <!-- Progress Timeline -->
         <section class="card timeline-card">
-            <h2>Progress Timeline</h2>
+            <div class="card-header">
+                <h2>MISSION TIMELINE</h2>
+            </div>
             <div class="timeline" id="timeline">
                 <!-- Timeline items injected here -->
             </div>
