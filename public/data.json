@@ -1,7 +1,7 @@
 {
   "sourceUrl": "https://www.tentors.org.uk/eventdata/routei.html",
-  "generatedAt": "2026-05-10T12:06:39.515Z",
-  "sourceLastUpdated": "12:06",
+  "generatedAt": "2026-05-10T13:55:17.679Z",
+  "sourceLastUpdated": "13:55",
   "route": "I",
   "team": {
     "requestedName": "Polar Explorer Scouts",
@@ -10,27 +10,27 @@
     "nameMatchesRequest": true,
     "avatarUrl": "./images/jjmb.png"
   },
-  "routeProgressPercent": 93,
-  "reachedCount": 17,
+  "routeProgressPercent": 100,
+  "reachedCount": 18,
   "totalCheckpoints": 18,
-  "distanceCovered": 54.1,
+  "distanceCovered": 58.1,
   "totalDistance": 58.1,
   "currentCheckpoint": {
-    "name": "EAST MILL TOR",
-    "arrivalTime": "10:53",
+    "name": "FINISH",
+    "arrivalTime": "11:44",
     "reached": true,
     "elapsed": {
-      "minutes": 233,
-      "label": "3h 53m"
+      "minutes": 284,
+      "label": "4h 44m"
     },
-    "progressPercent": 94,
+    "progressPercent": 100,
     "coordinates": {
-      "lat": 50.704,
-      "lon": -4.004
+      "lat": 50.738,
+      "lon": -4.008
     },
-    "localImageUrl": "./images/east-mill-tor.jpg",
+    "localImageUrl": "./images/finish.jpg",
     "imageSource": "placeholder",
-    "imageTitle": "EAST MILL TOR"
+    "imageTitle": "FINISH"
   },
   "nextCheckpoint": {
     "name": "HIGHER TOR",
@@ -45,8 +45,8 @@
     "localImageUrl": "./images/higher-tor.jpg",
     "imageSource": "placeholder",
     "imageTitle": "HIGHER TOR",
-    "eta": "12:38",
-    "pace": 26.4
+    "eta": null,
+    "pace": 12.8
   },
   "checkpoints": [
     {
@@ -76,8 +76,8 @@
       "localImageUrl": "./images/higher-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HIGHER TOR",
-      "eta": "12:38",
-      "pace": 26.4
+      "eta": null,
+      "pace": 12.8
     },
     {
       "name": "COSDON HILL",
@@ -321,10 +321,13 @@
     },
     {
       "name": "FINISH",
-      "arrivalTime": null,
-      "reached": false,
-      "elapsed": null,
-      "progressPercent": 94,
+      "arrivalTime": "11:44",
+      "reached": true,
+      "elapsed": {
+        "minutes": 284,
+        "label": "4h 44m"
+      },
+      "progressPercent": 100,
       "coordinates": {
         "lat": 50.738,
         "lon": -4.008
