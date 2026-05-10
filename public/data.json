@@ -1,7 +1,7 @@
 {
   "sourceUrl": "https://www.tentors.org.uk/eventdata/routei.html",
-  "generatedAt": "2026-05-10T04:08:58.937Z",
-  "sourceLastUpdated": "04:08",
+  "generatedAt": "2026-05-10T06:45:00.706Z",
+  "sourceLastUpdated": "06:45",
   "route": "I",
   "team": {
     "requestedName": "Polar Explorer Scouts",
@@ -10,27 +10,27 @@
     "nameMatchesRequest": true,
     "avatarUrl": "./images/jjmb.png"
   },
-  "routeProgressPercent": 65,
-  "reachedCount": 12,
+  "routeProgressPercent": 76,
+  "reachedCount": 14,
   "totalCheckpoints": 18,
-  "distanceCovered": 37.9,
+  "distanceCovered": 44.3,
   "totalDistance": 58.1,
   "currentCheckpoint": {
-    "name": "WHITE BARROW",
-    "arrivalTime": "17:57",
+    "name": "WILLSWORTHY",
+    "arrivalTime": "06:58",
     "reached": true,
     "elapsed": {
-      "minutes": 657,
-      "label": "10h 57m"
+      "minutes": 1438,
+      "label": "23h 58m"
     },
-    "progressPercent": 67,
+    "progressPercent": 78,
     "coordinates": {
-      "lat": 50.5757,
-      "lon": -4.0459
+      "lat": 50.628,
+      "lon": -4.072
     },
-    "localImageUrl": "./images/white-barrow.jpg",
+    "localImageUrl": "./images/willsworthy.jpg",
     "imageSource": "placeholder",
-    "imageTitle": "WHITE BARROW"
+    "imageTitle": "WILLSWORTHY"
   },
   "nextCheckpoint": {
     "name": "HIGHER TOR",
@@ -45,8 +45,8 @@
     "localImageUrl": "./images/higher-tor.jpg",
     "imageSource": "placeholder",
     "imageTitle": "HIGHER TOR",
-    "eta": "18:51",
-    "pace": 15.5
+    "eta": "11:14",
+    "pace": 122
   },
   "checkpoints": [
     {
@@ -76,8 +76,8 @@
       "localImageUrl": "./images/higher-tor.jpg",
       "imageSource": "placeholder",
       "imageTitle": "HIGHER TOR",
-      "eta": "18:51",
-      "pace": 15.5
+      "eta": "11:14",
+      "pace": 122
     },
     {
       "name": "COSDON HILL",
@@ -256,10 +256,13 @@
     },
     {
       "name": "WILLSWORTHY",
-      "arrivalTime": null,
-      "reached": false,
-      "elapsed": null,
-      "progressPercent": 72,
+      "arrivalTime": "06:58",
+      "reached": true,
+      "elapsed": {
+        "minutes": 1438,
+        "label": "23h 58m"
+      },
+      "progressPercent": 78,
       "coordinates": {
         "lat": 50.628,
         "lon": -4.072
